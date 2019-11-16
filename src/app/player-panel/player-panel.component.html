@@ -1,0 +1,78 @@
+
+<div>
+    <label *ngIf="msgDebug">{{msg}}</label>
+  <div>
+      <input type="file"
+      (change)="fileChange($event)"/>
+
+      <!-- <angular2-number-picker 
+        [min]="'20'" 
+        [max]="'3600'" 
+        [step]="'5'" 
+        [precision]="'1'" 
+        [inputDisabled]="'false'"
+        (onChange)="onNumberChanged($event)">
+    </angular2-number-picker> -->
+
+    <input 
+    [(ngModel)]="waitTime"
+    [type]="'number'" 
+    [placeholder]="'15'" 
+    [step]="'5'" 
+    [min]="'5'" 
+    [max]="'3600'" 
+    >
+
+    <button 
+      (click)="setVideo()">        
+      set video</button>
+  
+      <button 
+      (click)="pauseVideo()">        
+      pause</button>
+  
+      <button 
+      (click)="hideShowVideo()">
+              hide</button>
+  </div>
+
+  <div>
+
+      <!-- <figure [hidden]="!(visiblePlayer)"> -->
+
+
+          <button
+          [style.display]="!(visiblePlayer)?'inherit':'none'"    
+            [style.width]="'100%'"
+            [style.height.px]="400"
+            [style.backgroundSize]="'cover'"
+            [style.backgroundRepeat] ="'no-repeat'"
+            (click)="playVideo()"
+            [style.backgroundImage]="'url(images/button.jpg)'"
+            ></button>
+      <!-- [style.backgroundImage]="'url(images/button.jpg)'" -->
+        <!-- <figure [hidden]="!visiblePlayer">
+          <img  src="images/button.png"  
+                width="304" 
+                height="228"
+                (click)="playVideo()">
+      </figure> -->
+
+      <vg-player  (onPlayerReady)="onPlayerReady($event)"
+                [style.display]="visiblePlayer?'inherit':'none'" 
+                    >
+
+          <video  
+                  [vgMedia]="media" 
+                  #media id="singleVideo" 
+                  preload="auto" 
+                  [src]="fileURL"
+                  (click)="a()"
+                  controls>
+              <!-- <source [src]="fileURL" type="video/mp4"> -->
+          </video>
+      </vg-player>
+
+  </div>
+</div>
+
